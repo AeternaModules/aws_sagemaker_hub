@@ -28,7 +28,7 @@ output "sagemaker_hubs_region" {
 }
 output "sagemaker_hubs_s3_storage_config" {
   description = "Map of s3_storage_config values across all sagemaker_hubs, keyed the same as var.sagemaker_hubs"
-  value       = { for k, v in aws_sagemaker_hub.sagemaker_hubs : k => v.s3_storage_config if v.s3_storage_config != null && length(v.s3_storage_config) > 0 }
+  value       = { for k, v in aws_sagemaker_hub.sagemaker_hubs : k => one(v.s3_storage_config) if v.s3_storage_config != null && length(v.s3_storage_config) > 0 }
 }
 output "sagemaker_hubs_tags" {
   description = "Map of tags values across all sagemaker_hubs, keyed the same as var.sagemaker_hubs"
